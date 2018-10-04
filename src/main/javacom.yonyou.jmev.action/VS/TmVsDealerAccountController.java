@@ -1,6 +1,6 @@
-package com.bigsea.sns.web.controller.test;
-import com.bigsea.sns.model.test.Demo;
-import com.bigsea.sns.service.test.DemoService;
+package com.yonyou.jmev.web.controller.VS;
+import com.yonyou.jmev.model.VS.TmVsDealerAccount;
+import com.yonyou.jmev.service.VS.TmVsDealerAccountService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,48 +13,48 @@ import java.util.List;
 
 /**
  *
- * Created by zhh on 2017/09/27.
+ * Created by yzy on 2018/10/04.
  */
 @Controller
-@RequestMapping("/demo/")
-public class DemoController {
+@RequestMapping("/tmVsDealerAccount/")
+public class TmVsDealerAccountController {
 
     @Autowired
-    DemoService demoService;
+    TmVsDealerAccountService tmVsDealerAccountService;
 
     @RequestMapping("add")
     @ResponseBody
-    public String add(Demo demo) {
-        demoService.save(demo);
+    public String add(TmVsDealerAccount tmVsDealerAccount) {
+        tmVsDealerAccountService.save(tmVsDealerAccount);
         return "";
     }
 
     @RequestMapping("delete")
     @ResponseBody
     public String delete(@RequestParam Integer id) {
-	    demoService.deleteById(id);
+	    tmVsDealerAccountService.deleteById(id);
 	    return "";
     }
 
     @RequestMapping("update")
     @ResponseBody
-    public String update(Demo demo) {
-	    demoService.update(demo);
+    public String update(TmVsDealerAccount tmVsDealerAccount) {
+	    tmVsDealerAccountService.update(tmVsDealerAccount);
 	    return "";
     }
 
     @RequestMapping("detail")
     @ResponseBody
     public String detail(@RequestParam Integer id) {
-        Demo demo = demoService.findById(id);
-        return demo.toString();
+        TmVsDealerAccount tmVsDealerAccount = tmVsDealerAccountService.findById(id);
+        return tmVsDealerAccount.toString();
     }
 
     @RequestMapping("list")
     @ResponseBody
     public String list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
-        List<Demo> list = demoService.findAll();
+        List<TmVsDealerAccount> list = tmVsDealerAccountService.findAll();
         PageInfo pageInfo = new PageInfo(list);
         return list.toString();
     }
