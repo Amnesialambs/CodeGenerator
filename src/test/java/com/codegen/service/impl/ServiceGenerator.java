@@ -42,7 +42,7 @@ public class ServiceGenerator extends CodeGeneratorManager implements CodeGenera
 				serviceImplFile.getParentFile().mkdirs();
 			}
 			cfg.getTemplate("service-impl.ftl").process(data, new FileWriter(serviceImplFile));
-			logger.info(modelNameUpperCamel + "ServiceImpl.java 生成成功!");
+			logger.info(modelNameUpperCamel + "Impl.java 生成成功!");
 		} catch (Exception e) {
 			throw new RuntimeException("Service 生成失败!", e);
 		}

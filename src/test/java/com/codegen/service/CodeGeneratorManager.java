@@ -158,7 +158,7 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 	 * @return 区分字段 eg: test
 	 */
 	protected String getSign(String tableName) {
-		return getTableNameSplit(tableName)[1];
+		return getTableNameSplit(tableName)[2];
 	}
 	
 	/**
