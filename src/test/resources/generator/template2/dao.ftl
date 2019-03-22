@@ -1,10 +1,11 @@
-package ${basePackage}.service.impl.${sign};
+package ${basePackage}.dao.${sign};
 
-import ${basePackage}.dao.mapper.${sign}.${modelNameUpperCamel}Mapper;
-import ${basePackage}.model.${sign}.${modelNameUpperCamel};
-import ${basePackage}.service.${sign}.${modelNameUpperCamel}Service;
-import ${basePackage}.service.AbstractService;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -28,12 +29,12 @@ public class ${modelNameUpperCamel}Dao{
 		 return DcsDaoUtil.pageQuery(query.toString(), queryParam);
 	 }
 	 
-	 public void getSql(StringBuffer query,List<Object> queryParam,ttVsRemittanceDto dto) {
+	 public void getSql(StringBuffer query,List<Object> queryParam,${modelNameUpperCamel}Dto dto) {
 		 
 		 getSqlWhere(query,queryParam,dto);
 	 }
 	 
-     public void getSqlWhere(StringBuffer query,List<Object> queryParam,ttVsRemittanceDto dto) {
+     public void getSqlWhere(StringBuffer query,List<Object> queryParam,${modelNameUpperCamel}Dto dto) {
 		 
 	 }
 }

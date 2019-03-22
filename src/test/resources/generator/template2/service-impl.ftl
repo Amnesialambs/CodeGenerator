@@ -1,9 +1,5 @@
 package ${basePackage}.service.impl.${sign};
 
-import ${basePackage}.dao.mapper.${sign}.${modelNameUpperCamel}Mapper;
-import ${basePackage}.model.${sign}.${modelNameUpperCamel};
-import ${basePackage}.service.${sign}.${modelNameUpperCamel}Service;
-import ${basePackage}.service.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,18 +30,9 @@ public class ${modelNameUpperCamel}Impl{
 	 *  修改数据
 	 * @param dto
 	 */ 
-	public void modifyRemittance(@RequestBody ttVsRemittanceDto dto) {
+	public void modify${modelNameLowerCamel}(${modelNameLowerCamel}Dto dto) {
 		
-		TtVsRemittancePO po = TtVsRemittancePO.findById(dto.getRemittanceId());
-		if(StringUtils.checkNull(po)) {
-			po = new TtVsRemittancePO();
-		}
-		try {
-			poUtil.copyToPO(dto, po);
-		} catch (Exception e) {
-			throw new ServiceBizException("dto转po报错，请联系管理员");
-		}
-		po.saveIt();
+		
 		
 	}
 }

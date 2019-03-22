@@ -65,12 +65,12 @@ public class ModelAndMapperGenerator extends CodeGeneratorManager implements Cod
 			context = initMybatisGeneratorContext(sign);
 			JavaModelGeneratorConfiguration javaModelGeneratorConfiguration = new JavaModelGeneratorConfiguration();
 	        javaModelGeneratorConfiguration.setTargetProject(PROJECT_PATH + JAVA_PATH);
-	        javaModelGeneratorConfiguration.setTargetPackage(MODEL_PACKAGE + "." + sign);
+	        javaModelGeneratorConfiguration.setTargetPackage(BASE_PACKAGE + MODEL_PACKAGE + "." + sign);
 	        context.setJavaModelGeneratorConfiguration(javaModelGeneratorConfiguration);
 	        
 	        JavaClientGeneratorConfiguration javaClientGeneratorConfiguration = new JavaClientGeneratorConfiguration();
 	        javaClientGeneratorConfiguration.setTargetProject(PROJECT_PATH + JAVA_PATH);
-	        javaClientGeneratorConfiguration.setTargetPackage(MAPPER_PACKAGE + "." + sign);
+	        javaClientGeneratorConfiguration.setTargetPackage(BASE_PACKAGE + MAPPER_PACKAGE + "." + sign);
 	        javaClientGeneratorConfiguration.setConfigurationType("XMLMAPPER");
 	        context.setJavaClientGeneratorConfiguration(javaClientGeneratorConfiguration);
 	        

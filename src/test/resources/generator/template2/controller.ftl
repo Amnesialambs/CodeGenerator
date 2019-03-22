@@ -1,13 +1,13 @@
-package ${basePackage}.web.controller.${sign};
-import ${basePackage}.model.${sign}.${modelNameUpperCamel};
-import ${basePackage}.service.${sign}.${modelNameUpperCamel}Service;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+package ${basePackage}.action.${sign};
+
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import java.util.List;
 public class ${modelNameUpperCamel}Controller {
 
     @Autowired
-    ${modelNameUpperCamel}Impl ${modelNameLowerCamel}Impl;
+    private ${modelNameUpperCamel}Impl ${modelNameLowerCamel}Impl;
 
     /**
 	 *    初始化数据

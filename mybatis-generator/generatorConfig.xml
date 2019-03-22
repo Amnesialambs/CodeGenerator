@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="mysqlgenerator" targetRuntime="MyBatis3">
+		<property name="autoDelimitKeywords" value="true" />
+		<!--可以使用``包括字段名，避免字段名与sql保留字冲突报错 -->
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+
+		<!-- 自动生成toString方法 -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<!-- 自动生成equals方法和hashcode方法 -->
+		<plugin
+			type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+
+		<!-- 非官方插件 https://github.com/itfsw/mybatis-generator-plugin -->
+		<!-- 查询单条数据插件 -->
+		<plugin
+			type="com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin" />
+		<!-- 查询结果选择性返回插件 -->
+		<plugin
+			type="com.itfsw.mybatis.generator.plugins.SelectSelectivePlugin" />
+		<!-- Example Criteria 增强插件 -->
+		<plugin
+			type="com.itfsw.mybatis.generator.plugins.ExampleEnhancedPlugin" />
+		<!-- 数据Model属性对应Column获取插件 -->
+		<plugin
+			type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin" />
+		<!-- 逻辑删除插件 -->
+		<plugin
+			type="com.itfsw.mybatis.generator.plugins.LogicalDeletePlugin">
+			<!-- 这里配置的是全局逻辑删除列和逻辑删除值，当然在table中配置的值会覆盖该全局配置 -->
+			<!-- 逻辑删除列类型只能为数字、字符串或者布尔类型 -->
+			<property name="logicalDeleteColumn" value="deleted" />
+			<!-- 逻辑删除-已删除值 -->
+			<property name="logicalDeleteValue" value="1" />
+			<!-- 逻辑删除-未删除值 -->
+			<property name="logicalUnDeleteValue" value="0" />
+		</plugin>
+		<!-- MySQL分页插件 -->
+		<plugin type="com.itfsw.mybatis.generator.plugins.LimitPlugin" />
+		<!-- Example 目标包修改插件 -->
+		<!-- <plugin
+			type="com.itfsw.mybatis.generator.plugins.ExampleTargetPlugin">
+			修改Example类生成到目标包下
+			<property name="targetPackage"
+				value="com.yonyou.model.example" />
+		</plugin> -->
+		<!-- 批量插入插件 -->
+		<plugin
+			type="com.itfsw.mybatis.generator.plugins.BatchInsertPlugin">
+			<!-- 开启后可以实现官方插件根据属性是否为空决定是否插入该字段功能 ！需开启allowMultiQueries=true多条sql提交操作，所以不建议使用！插件默认不开启 -->
+			<property name="allowMultiQueries" value="false" />
+		</plugin>
+
+		<!-- 存在即更新插件 -->
+		<plugin type="com.itfsw.mybatis.generator.plugins.UpsertPlugin">
+			<!-- 支持upsertByExample，upsertByExampleSelective操作 ！需开启allowMultiQueries=true多条sql提交操作，所以不建议使用！插件默认不开启 -->
+			<property name="allowMultiQueries" value="false" />
+			<!-- 开启批量功能，支持batchUpsert,batchUpsertWithBLOBs,batchUpserSelective ！这几个方法中无法支持IncrementsPlugin的方法！插件默认不开启 -->
+			<property name="allowBatchUpsert" value="fasle" />
+		</plugin>
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<!--<property name="suppressAllComments" value="true"/> -->
+		</commentGenerator>
+
+		<!--数据库连接信息 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://172.20.32.3:3307/market_support?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true"
+			userId="dbadmin" password="Root-1234" />
+
+		<javaTypeResolver>
+			<property name="useJSR310Types" value="true" />
+		</javaTypeResolver>
+
+		<javaModelGenerator
+			targetPackage="com.yonyou.model" targetProject="src/main/java" />
+		<!-- <sqlMapGenerator targetPackage="com.yonyou.dao"
+			targetProject="src/main/resources" />
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.yonyou.dao" targetProject="src/main/java" /> -->
+		<!--表名 -->
+		<table tableName="tt_fl_car_remove">
+			<generatedKey column="remove_id" sqlStatement="MySql"
+				identity="true" />
+		</table>
+
+	</context>
+</generatorConfiguration>

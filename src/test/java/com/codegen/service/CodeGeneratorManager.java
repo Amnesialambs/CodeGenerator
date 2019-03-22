@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
+import org.mybatis.generator.codegen.ibatis2.dao.DAOGenerator;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.config.JDBCConnectionConfiguration;
 import org.mybatis.generator.config.ModelType;
@@ -17,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.codegen.service.impl.ControllerGenerator;
+import com.codegen.service.impl.DaoGenerator;
 import com.codegen.service.impl.ModelAndMapperGenerator;
 import com.codegen.service.impl.ServiceGenerator;
 import com.codegen.util.StringUtils;
@@ -214,9 +216,10 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		if (flag) {
 			modelName = getDefModelName(tableName);
 		}
-		new ModelAndMapperGenerator().genCode(tableName, modelName, sign);
+//		new ModelAndMapperGenerator().genCode(tableName, modelName, sign);
 		new ServiceGenerator().genCode(tableName, modelName, sign);
 		new ControllerGenerator().genCode(tableName, modelName, sign);
+		new DaoGenerator().genCode(tableName, modelName, sign);
 	}
 	
 	/**
@@ -279,6 +282,7 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		SERVICE_PACKAGE = prop.getProperty("service.package");
 		SERVICE_IMPL_PACKAGE = prop.getProperty("service.impl.package");
 		CONTROLLER_PACKAGE = prop.getProperty("controller.package");
+		DAO_PACKAGE = prop.getProperty("dao.package");
 		
 		MAPPER_INTERFACE_REFERENCE = prop.getProperty("mapper.interface.reference");
 		SERVICE_INTERFACE_REFERENCE = prop.getProperty("service.interface.reference");
@@ -287,11 +291,14 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		String servicePackage = prop.getProperty("package.path.service");
 		String serviceImplPackage = prop.getProperty("package.path.service.impl");
 		String controllerPackage = prop.getProperty("package.path.controller");
+		String daoPackage = prop.getProperty("package.path.dao");
 		
+		PACKAGE_PATH_BASE = packageConvertPath(BASE_PACKAGE);
 		PACKAGE_PATH_SERVICE = "".equals(servicePackage) ? packageConvertPath(SERVICE_PACKAGE) : servicePackage;
 		PACKAGE_PATH_SERVICE_IMPL = "".equals(serviceImplPackage) ? packageConvertPath(SERVICE_IMPL_PACKAGE) : serviceImplPackage;
 		PACKAGE_PATH_CONTROLLER = "".equals(controllerPackage) ? packageConvertPath(CONTROLLER_PACKAGE) : controllerPackage;
-		
+		PACKAGE_PATH_DAO = "".equals(daoPackage) ? packageConvertPath(DAO_PACKAGE) : daoPackage;
+
 		AUTHOR = prop.getProperty("author");
 		String dateFormat = "".equals(prop.getProperty("date-format")) ? "yyyy/MM/dd" : prop.getProperty("date-format");
 		DATE = new SimpleDateFormat(dateFormat).format(new Date());

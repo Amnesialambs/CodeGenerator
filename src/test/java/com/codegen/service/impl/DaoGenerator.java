@@ -11,11 +11,8 @@ import com.codegen.util.StringUtils;
 import com.google.common.base.CaseFormat;
 
 import freemarker.template.Configuration;
-/**
- * Controller层 代码生成器
- * Created by zhh on 2017/09/20.
- */
-public class ControllerGenerator extends CodeGeneratorManager implements CodeGenerator {
+
+public class DaoGenerator extends CodeGeneratorManager implements CodeGenerator {
 
 	@Override
 	public void genCode(String tableName, String modelName, String sign) {
@@ -25,16 +22,17 @@ public class ControllerGenerator extends CodeGeneratorManager implements CodeGen
 		
 		Map<String, Object> data = getDataMapInit(tableName, modelName, sign, modelNameUpperCamel); 
 		try {
-			File controllerFile = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_BASE + PACKAGE_PATH_CONTROLLER+ customMapping
-						 + modelNameUpperCamel + "Controller.java");
+			File controllerFile = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_BASE + PACKAGE_PATH_DAO+ customMapping
+						 + modelNameUpperCamel + "Dao.java");
 	        if (!controllerFile.getParentFile().exists()) {
 	        	controllerFile.getParentFile().mkdirs();
 	        }
-	        cfg.getTemplate("controller.ftl").process(data, new FileWriter(controllerFile));
-			logger.info(modelNameUpperCamel + "Controller.java 生成成功!");
+	        cfg.getTemplate("dao.ftl").process(data, new FileWriter(controllerFile));
+			logger.info(modelNameUpperCamel + "Dao.java 生成成功!");
 		} catch (Exception e) {
 			throw new RuntimeException("Controller 生成失败!", e);
 		}
+
 	}
 	
 	/**
@@ -57,4 +55,5 @@ public class ControllerGenerator extends CodeGeneratorManager implements CodeGen
 		
 		return data;
 	}
+
 }

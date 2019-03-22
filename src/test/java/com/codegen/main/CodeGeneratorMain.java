@@ -8,12 +8,12 @@ import com.codegen.service.CodeGeneratorManager;
  */
 public class CodeGeneratorMain {
 	
-	private static final String TABLE = "TT_VS_REMITTANCE";
+	private static final String TABLE = "tt_fl_car_remove";
 	
-	private static final String MODEL_NAME = "ttVsRemittancePO";
+	private static final String MODEL_NAME = "RefitFactoryLockVehicle";
 	
 	private static final String[] TABLES = {
-			"TT_VS_REMITTANCE", "TM_VS_DEALER_ACCOUNT"
+			"tt_fl_car_remove"
 	};
 	
 	/**
@@ -31,10 +31,10 @@ public class CodeGeneratorMain {
 	public static void main(String[] args) {
 		CodeGeneratorManager cgm = new CodeGeneratorManager();
 		
-	//	cgm.genCodeWithSimpleName(TABLE);
+//	 	cgm.genCodeWithSimpleName(TABLE);
 		
-		cgm.genCodeWithDetailName(TABLES);
+//		cgm.genCodeWithDetailName(TABLES);
 		
-//		cgm.genCodeWithCustomName(TABLE, MODEL_NAME);
+		cgm.genCodeWithCustomName(TABLE, MODEL_NAME);
 	}
 }
