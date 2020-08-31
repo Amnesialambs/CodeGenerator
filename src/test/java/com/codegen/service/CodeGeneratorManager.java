@@ -216,7 +216,7 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		if (flag) {
 			modelName = getDefModelName(tableName);
 		}
-//		new ModelAndMapperGenerator().genCode(tableName, modelName, sign);
+	//	new ModelAndMapperGenerator().genCode(tableName, modelName, sign);
 		new ServiceGenerator().genCode(tableName, modelName, sign);
 		new ControllerGenerator().genCode(tableName, modelName, sign);
 		new DaoGenerator().genCode(tableName, modelName, sign);

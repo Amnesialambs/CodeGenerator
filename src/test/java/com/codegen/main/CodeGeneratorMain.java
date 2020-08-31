@@ -8,9 +8,9 @@ import com.codegen.service.CodeGeneratorManager;
  */
 public class CodeGeneratorMain {
 	
-	private static final String TABLE = "tt_fl_car_remove";
+	private static final String TABLE = "tm_external_change_box_certificate_apply";
 	
-	private static final String MODEL_NAME = "RefitFactoryLockVehicle";
+	private static final String MODEL_NAME = "ExternalChangeBoxCertificateApplyMng";
 	
 	private static final String[] TABLES = {
 			"tt_fl_car_remove"
