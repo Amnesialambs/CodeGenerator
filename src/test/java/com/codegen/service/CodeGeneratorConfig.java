@@ -12,7 +12,9 @@ public class CodeGeneratorConfig {
 	protected static String JDBC_DRIVER_CLASS_NAME;
 	
 	// 项目在硬盘上的基础路径
-	protected static final String PROJECT_PATH = System.getProperty("user.dir");
+	//protected static final String PROJECT_PATH = System.getProperty("user.dir");
+	protected static  String PROJECT_PATH = "";
+
 	// java文件路径
 	protected static String JAVA_PATH;
 	// 资源文件路径
@@ -34,6 +36,8 @@ public class CodeGeneratorConfig {
 	protected static String CONTROLLER_PACKAGE;
 	// 项目 DAO 所在包
 	protected static String DAO_PACKAGE;
+	// 项目 DAO 所在包
+	protected static String PO_PACKAGE;
 	
 	protected static String PACKAGE_PATH_BASE;
 	// 生成的 Service 存放路径
@@ -44,6 +48,8 @@ public class CodeGeneratorConfig {
 	protected static String PACKAGE_PATH_CONTROLLER;
 	// 生成的 Dao 存放路径
 	protected static String PACKAGE_PATH_DAO;
+	// 生成的 Dao 存放路径
+	protected static String PACKAGE_PATH_PO;
 	
 	// MyMapper 插件基础接口的完全限定名
 	protected static String MAPPER_INTERFACE_REFERENCE;

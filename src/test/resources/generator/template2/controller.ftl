@@ -1,48 +1,72 @@
 package ${basePackage}.action.${sign};
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.yonyou.dcs.common.bean.ElemBean;
+import com.yonyou.dmsgms.framework.DAO.PageInfoDto;
+import com.yonyou.f4.mvc.annotation.TxnConn;
+import com.yonyou.f4.mvc.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 /**
+* Copyright: Copyright (c)
+* @description
+*               该类的功能描述
+* @author ${author}
+* @date ${date}
+* @version v1.0.0
+*
+* Modification History:
+* Date         Author          Version            Description
+*-------------------------------------------------------------*
+* ${date}    ${author}          v1.0.0             修改原因
+*/
+/**
  *
- * Created by ${author} on ${date}.
+ * Created by  on .
  */
 @Controller
-@RequestMapping("/${baseRequestMapping}/")
-public class ${modelNameUpperCamel}Controller {
+@TxnConn
+@RequestMapping("/${modelNameUpperCamel}Mng")
+public class ${modelNameUpperCamel}Mng extends BaseController {
 
     @Autowired
     private ${modelNameUpperCamel}Impl ${modelNameLowerCamel}Impl;
 
     /**
 	 *    初始化数据
-	 * @param dto
+	 * @param queryParam
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.GET)
     @ResponseBody
-	public PageInfoDto getPageInfo(@RequestParam ${modelNameLowerCamel}Dto dto) {
-		
-		return ${modelNameLowerCamel}Impl.getPageInfo(dto);
+	public PageInfoDto getPageInfo(@RequestParam Map<String,String> queryParam) {
+		ElemBean condition = new ElemBean(queryParam);
+		return ${modelNameLowerCamel}Impl.getPageInfo(condition);
+	}
+
+	/**
+	*  新增
+	* @param queryParam
+	*/
+	@RequestMapping(method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public void add(@RequestBody Map queryParam) {
+	    ElemBean condition = new ElemBean(queryParam);
+	    ${modelNameLowerCamel}Impl.modify(condition);
 	}
 
     /**
 	 *  修改数据
-	 * @param dto
+	 * @param queryParam
 	 */
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.CREATED)
-	public void modify${modelNameUpperCamel}(@RequestBody ${modelNameUpperCamel}Dto dto) {
-		
-		${modelNameLowerCamel}Impl.modify${modelNameUpperCamel}(dto);
+	public void modify(@RequestBody Map queryParam) {
+		ElemBean condition = new ElemBean(queryParam);
+		${modelNameLowerCamel}Impl.modify(condition);
 	}
 
 }

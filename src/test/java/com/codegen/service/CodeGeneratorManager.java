@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
+import com.codegen.service.impl.*;
 import org.mybatis.generator.codegen.ibatis2.dao.DAOGenerator;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.config.JDBCConnectionConfiguration;
@@ -17,10 +18,6 @@ import org.mybatis.generator.config.SqlMapGeneratorConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.codegen.service.impl.ControllerGenerator;
-import com.codegen.service.impl.DaoGenerator;
-import com.codegen.service.impl.ModelAndMapperGenerator;
-import com.codegen.service.impl.ServiceGenerator;
 import com.codegen.util.StringUtils;
 import com.google.common.base.CaseFormat;
 
@@ -216,10 +213,11 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		if (flag) {
 			modelName = getDefModelName(tableName);
 		}
-//		new ModelAndMapperGenerator().genCode(tableName, modelName, sign);
+	//	new ModelAndMapperGenerator().genCode(tableName, modelName, sign);
 		new ServiceGenerator().genCode(tableName, modelName, sign);
 		new ControllerGenerator().genCode(tableName, modelName, sign);
 		new DaoGenerator().genCode(tableName, modelName, sign);
+		new POGenerator().genCode(tableName, modelName, sign);
 	}
 	
 	/**
@@ -274,8 +272,10 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		
 		JAVA_PATH = prop.getProperty("java.path");
 		RESOURCES_PATH = prop.getProperty("resources.path");
+		PROJECT_PATH = prop.getProperty("template.project.path");
 		TEMPLATE_FILE_PATH = PROJECT_PATH + prop.getProperty("template.file.path");
-		
+
+
 		BASE_PACKAGE = prop.getProperty("base.package");
 		MODEL_PACKAGE = prop.getProperty("model.package");
 		MAPPER_PACKAGE = prop.getProperty("mapper.package");
@@ -283,6 +283,7 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		SERVICE_IMPL_PACKAGE = prop.getProperty("service.impl.package");
 		CONTROLLER_PACKAGE = prop.getProperty("controller.package");
 		DAO_PACKAGE = prop.getProperty("dao.package");
+		PO_PACKAGE = prop.getProperty("po.package");
 		
 		MAPPER_INTERFACE_REFERENCE = prop.getProperty("mapper.interface.reference");
 		SERVICE_INTERFACE_REFERENCE = prop.getProperty("service.interface.reference");
@@ -292,12 +293,15 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		String serviceImplPackage = prop.getProperty("package.path.service.impl");
 		String controllerPackage = prop.getProperty("package.path.controller");
 		String daoPackage = prop.getProperty("package.path.dao");
+		String poPackage = prop.getProperty("package.path.po");
 		
 		PACKAGE_PATH_BASE = packageConvertPath(BASE_PACKAGE);
 		PACKAGE_PATH_SERVICE = "".equals(servicePackage) ? packageConvertPath(SERVICE_PACKAGE) : servicePackage;
 		PACKAGE_PATH_SERVICE_IMPL = "".equals(serviceImplPackage) ? packageConvertPath(SERVICE_IMPL_PACKAGE) : serviceImplPackage;
 		PACKAGE_PATH_CONTROLLER = "".equals(controllerPackage) ? packageConvertPath(CONTROLLER_PACKAGE) : controllerPackage;
 		PACKAGE_PATH_DAO = "".equals(daoPackage) ? packageConvertPath(DAO_PACKAGE) : daoPackage;
+		PACKAGE_PATH_PO = "".equals(poPackage) ? packageConvertPath(PO_PACKAGE) : poPackage;
+
 
 		AUTHOR = prop.getProperty("author");
 		String dateFormat = "".equals(prop.getProperty("date-format")) ? "yyyy/MM/dd" : prop.getProperty("date-format");

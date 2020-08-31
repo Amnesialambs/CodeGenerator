@@ -1,20 +1,24 @@
 package ${basePackage}.dao.${sign};
 
-import com.yonyou.dcs.common.bean.ElemBean;
-import com.yonyou.dcs.common.util.DcsDaoUtil;
-import com.yonyou.dmsgms.framework.DAO.PageInfoDto;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ *
+ * Created by ${author} on ${date}.
+ */
 @Repository
-public class ${modelNameUpperCamel}Dao {
+public class ${modelNameUpperCamel}Dao{
 
   
     /**
 	 *    初始化数据
-	 * @param condition
+	 * @param dto
 	 * @return
 	 */
     public PageInfoDto getPageInfo(ElemBean condition) {

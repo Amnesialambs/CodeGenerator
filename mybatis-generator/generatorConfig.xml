@@ -70,8 +70,8 @@
 
 		<!--数据库连接信息 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://172.20.32.3:3307/market_support?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true"
-			userId="dbadmin" password="Root-1234" />
+			connectionURL="jdbc:mysql://193.28.3.152:3307/vehicle_sale?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true"
+			userId="c12feaac0a92671a543cbc7e5a49e35c" password="46b571a31377b4500b1e459e982be5ed" />
 
 		<javaTypeResolver>
 			<property name="useJSR310Types" value="true" />
