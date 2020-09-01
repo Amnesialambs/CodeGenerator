@@ -90,4 +90,54 @@ public class StringUtils {
 		}
 		return sb.toString();
 	}
+
+	/**
+	 * 将数据库类型转换为java中合适的类型
+	 * @param typeName
+	 * @return
+	 */
+	private static String changeType(String typeName) {
+		switch (typeName) {
+			case "VARCHAR":
+			case "CHAR":
+			case "TEXT":
+			case "TINYTEXT":
+			case "MEDIUMTEXT":
+			case "LONGTEXT":
+			case "ENUM":
+			case "SET":
+				return "String";
+			case "BLOB":
+			case "BINARY":
+			case "VARBINARY":
+			case "TINYBLOB":
+			case "MEDIUMBLOB":
+			case "LONGBLOB":
+				return "byte[]";
+			case "INTEGER":
+			case "ID":
+			case "BIGINT":
+				return "Long";
+			case "TINYINT":
+			case "SMALLINT":
+			case "MEDIUMINT":
+			case "INT":
+				return "Integer";
+			case "DECIMAL":
+				return "BigDecimal";
+			case "BIT":
+				return "Boolean";
+			case "FLOAT":
+				return "Float";
+			case "DOUBLE":
+				return "Double";
+			case "DATE":
+			case "YEAR":
+				return "Date";
+			case "TIME":
+				return "Time";
+		}
+		return "String";
+	}
+
 }
