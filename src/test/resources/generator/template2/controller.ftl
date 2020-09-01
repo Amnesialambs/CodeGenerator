@@ -45,6 +45,7 @@ public class ${modelNameUpperCamel}Mng extends BaseController {
 	public PageInfoDto getPageInfo(@RequestParam Map<String,String> queryParam) {
 		ElemBean condition = new ElemBean(queryParam);
 		return ${modelNameLowerCamel}Impl.getPageInfo(condition);
+<<<<<<< HEAD
 	}
 
 	/**
@@ -58,13 +59,21 @@ public class ${modelNameUpperCamel}Mng extends BaseController {
 	    ${modelNameLowerCamel}Impl.modify(condition);
 	}
 
+=======
+	} 
+	
+>>>>>>> 6888635b9cf0c8668db6f55ffda0ad216c7b1da8
     /**
 	 *  修改数据
 	 * @param queryParam
 	 */
 	@RequestMapping(method=RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.CREATED)
+<<<<<<< HEAD
 	public void modify(@RequestBody Map queryParam) {
+=======
+	public void modify(@RequestBody Map<String,String> queryParam) {
+>>>>>>> 6888635b9cf0c8668db6f55ffda0ad216c7b1da8
 		ElemBean condition = new ElemBean(queryParam);
 		${modelNameLowerCamel}Impl.modify(condition);
 	}
