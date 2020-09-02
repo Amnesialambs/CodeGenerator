@@ -1,13 +1,37 @@
 package ${basePackage}.action.${sign};
 
+ort com.auth.manager.core.dto.UserInfoDto;
+import com.auth.manager.core.threadlocal.UserInfoThreadLocal;
+import com.yonyou.dcs.common.Constant;
 import com.yonyou.dcs.common.bean.ElemBean;
+import com.yonyou.dcs.common.dto.ExcelTemplateColum;
+import com.yonyou.dcs.common.util.CreateExcelTemplate;
+import com.yonyou.dcs.common.util.POUtil;
+import com.yonyou.dcs.common.util.UserUtil;
+import com.yonyou.dcs.vehicleSale.dto.TtNewgCountryImportDto;
+import com.yonyou.dcs.vehicleSale.po.TmDealerInfoPo;
+import com.yonyou.dcs.vehicleSale.po.TtSaledReportPO;
+import com.yonyou.dcs.vehicleSale.po.newg.TtNewgCountryLandMarkPO;
+import com.yonyou.dcs.vehicleSale.service.newg.NewgCountryLandMarkImpl;
 import com.yonyou.dmsgms.framework.DAO.PageInfoDto;
+import com.yonyou.dmsgms.framework.service.excel.*;
+import com.yonyou.dmsgms.framework.service.excel.impl.AbstractExcelReadCallBack;
+import com.yonyou.dmsgms.function.domains.DTO.ImportResultDto;
+import com.yonyou.dmsgms.function.exception.ServiceBizException;
 import com.yonyou.f4.mvc.annotation.TxnConn;
 import com.yonyou.f4.mvc.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -92,6 +116,7 @@ public class ${modelNameUpperCamel}Mng extends BaseController {
 
 
 				}
+		    }
 		));
 
 		if (importResult.isSucess()) {
@@ -100,6 +125,7 @@ public class ${modelNameUpperCamel}Mng extends BaseController {
 		    throw new ServiceBizException("导入出错,请见错误列表", importResult.getErrorList());
 		}
 	}
+
 	/**
 	* @param @param  request
 	* @param @param  response
