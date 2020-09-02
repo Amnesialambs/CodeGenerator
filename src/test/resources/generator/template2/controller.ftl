@@ -23,10 +23,6 @@ import org.springframework.web.bind.annotation.*;
 *-------------------------------------------------------------*
 * ${date}    ${author}          v1.0.0             修改原因
 */
-/**
- *
- * Created by  on .
- */
 @Controller
 @TxnConn
 @RequestMapping("/${modelNameUpperCamel}Mng")
@@ -34,6 +30,15 @@ public class ${modelNameUpperCamel}Mng extends BaseController {
 
     @Autowired
     private ${modelNameUpperCamel}Impl ${modelNameLowerCamel}Impl;
+
+	@Autowired
+	private ExcelRead<TtNewgCountryImportDto> excelReadService;
+
+	@Autowired
+	private POUtil poUtil;
+
+	@Autowired
+	private CreateExcelTemplate createExcelTemplate;
 
     /**
 	 *    初始化数据
@@ -45,7 +50,6 @@ public class ${modelNameUpperCamel}Mng extends BaseController {
 	public PageInfoDto getPageInfo(@RequestParam Map<String,String> queryParam) {
 		ElemBean condition = new ElemBean(queryParam);
 		return ${modelNameLowerCamel}Impl.getPageInfo(condition);
-<<<<<<< HEAD
 	}
 
 	/**
@@ -59,23 +63,64 @@ public class ${modelNameUpperCamel}Mng extends BaseController {
 	    ${modelNameLowerCamel}Impl.modify(condition);
 	}
 
-=======
-	} 
-	
->>>>>>> 6888635b9cf0c8668db6f55ffda0ad216c7b1da8
     /**
 	 *  修改数据
 	 * @param queryParam
 	 */
 	@RequestMapping(method=RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.CREATED)
-<<<<<<< HEAD
-	public void modify(@RequestBody Map queryParam) {
-=======
 	public void modify(@RequestBody Map<String,String> queryParam) {
->>>>>>> 6888635b9cf0c8668db6f55ffda0ad216c7b1da8
 		ElemBean condition = new ElemBean(queryParam);
 		${modelNameLowerCamel}Impl.modify(condition);
 	}
 
+	/**
+	* @Description: 导入
+	*/
+	@RequestMapping(value = "/importExcel", method = RequestMethod.POST)
+	@ResponseBody
+	public List<TtNewgCountryImportDto> importExcel(@RequestParam Map<String, String> queryParam, @RequestParam(value = "file") MultipartFile importFile) throws Exception {
+		ImportResultDto<TtNewgCountryImportDto> importResult = null;
+
+		UserInfoDto userDto = UserInfoThreadLocal.getUserInfoDto();
+		final String isCafAsc = (userDto.getOrgType().intValue() == 15061010 || userDto.getOrgType().intValue() == 15061012) ? "1" : "";
+
+		// 解析Excel 表格(如果需要进行回调)
+		importResult = excelReadService.analyzeExcelFirstSheet(importFile, new AbstractExcelReadCallBack<TtNewgCountryImportDto>(TtNewgCountryImportDto.class, new ExcelReadCallBack<TtNewgCountryImportDto>() {
+				@Override
+				public void readRowCallBack(TtNewgCountryImportDto rowDto, boolean isValidateSucess) {
+
+
+				}
+		));
+
+		if (importResult.isSucess()) {
+		    return importResult.getDataList();
+		} else {
+		    throw new ServiceBizException("导入出错,请见错误列表", importResult.getErrorList());
+		}
+	}
+	/**
+	* @param @param  request
+	* @param @param  response
+	* @param @throws Exception    参数
+	* @return void    返回类型
+	* @throws
+	* @Title: activityAscExport
+	* @Description: 股份新能源车辆国标信息模板下载
+	*/
+	@RequestMapping(value = "/model/exportExcel", method = RequestMethod.GET)
+	public void activityAscExport(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+	    List<ExcelTemplateColum> exportColumnList = new ArrayList<>();
+		exportColumnList.add(new ExcelTemplateColum("序号"));
+		exportColumnList.add(new ExcelTemplateColum("车牌颜色", "5580"));
+		exportColumnList.add(new ExcelTemplateColum("行驶证上所有人（私人姓名/单位全称）"));
+
+		List<String> sampleValueList = new ArrayList<>();
+		sampleValueList.add("1（示例）");
+		sampleValueList.add("LA9AEPG2XJHLJK005");
+		sampleValueList.add("赣AD33555");
+		createExcelTemplate.getExcelTemplate("股份新能源车辆国标信息模版.xls", exportColumnList, request, response, sampleValueList);
+	}
 }

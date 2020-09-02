@@ -26,7 +26,7 @@ public class ControllerGenerator extends CodeGeneratorManager implements CodeGen
 		Map<String, Object> data = getDataMapInit(tableName, modelName, sign, modelNameUpperCamel); 
 		try {
 			File controllerFile = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_BASE + PACKAGE_PATH_CONTROLLER+ customMapping
-						 + modelNameUpperCamel + "Mng.java");
+						 + modelNameUpperCamel + ".java");
 	        if (!controllerFile.getParentFile().exists()) {
 	        	controllerFile.getParentFile().mkdirs();
 	        }
