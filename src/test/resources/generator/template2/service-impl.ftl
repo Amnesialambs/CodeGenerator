@@ -19,7 +19,7 @@ public class ${modelNameUpperCamel}Impl{
 	 */
     public PageInfoDto getPageInfo(ElemBean condition) {
 		
-		return ${modelNameLowerCamel}Dao.getPageInfo(dto);
+		return ${modelNameLowerCamel}Dao.getPageInfo(condition);
 	}
 
 
@@ -36,12 +36,6 @@ public class ${modelNameUpperCamel}Impl{
 	 * @param condition
 	 */ 
 	public void modify(ElemBean condition) {
-<<<<<<< HEAD
 
-=======
-		
-		
-		
->>>>>>> 6888635b9cf0c8668db6f55ffda0ad216c7b1da8
 	}
 }
