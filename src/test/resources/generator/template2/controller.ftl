@@ -106,9 +106,6 @@ public class ${modelNameUpperCamel}Mng extends BaseController {
 	public List<TtNewgCountryImportDto> importExcel(@RequestParam Map<String, String> queryParam, @RequestParam(value = "file") MultipartFile importFile) throws Exception {
 		ImportResultDto<TtNewgCountryImportDto> importResult = null;
 
-		UserInfoDto userDto = UserInfoThreadLocal.getUserInfoDto();
-		final String isCafAsc = (userDto.getOrgType().intValue() == 15061010 || userDto.getOrgType().intValue() == 15061012) ? "1" : "";
-
 		// 解析Excel 表格(如果需要进行回调)
 		importResult = excelReadService.analyzeExcelFirstSheet(importFile, new AbstractExcelReadCallBack<TtNewgCountryImportDto>(TtNewgCountryImportDto.class, new ExcelReadCallBack<TtNewgCountryImportDto>() {
 				@Override
@@ -141,7 +138,7 @@ public class ${modelNameUpperCamel}Mng extends BaseController {
 	    List<ExcelTemplateColum> exportColumnList = new ArrayList<>();
 		exportColumnList.add(new ExcelTemplateColum("序号"));
 		exportColumnList.add(new ExcelTemplateColum("车牌颜色", "5580"));
-		exportColumnList.add(new ExcelTemplateColum("行驶证上所有人（私人姓名/单位全称）"));
+		exportColumnList.add(new ExcelTemplateColum("行驶证上所有人"));
 
 		List<String> sampleValueList = new ArrayList<>();
 		sampleValueList.add("1（示例）");
