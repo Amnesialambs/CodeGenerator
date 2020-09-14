@@ -1,6 +1,5 @@
 package ${basePackage}.action.${sign};
 
-ort com.auth.manager.core.dto.UserInfoDto;
 import com.auth.manager.core.threadlocal.UserInfoThreadLocal;
 import com.yonyou.dcs.common.Constant;
 import com.yonyou.dcs.common.bean.ElemBean;
@@ -77,6 +76,18 @@ public class ${modelNameUpperCamel}Mng extends BaseController {
 	}
 
 	/**
+	*    获取明细数据
+	* @param queryParam
+	* @return
+	*/
+	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	@ResponseBody
+	public Map getInfoById(@PathVariable Long vehicleClassId,@RequestParam Map<String,String> queryParam) {
+		ElemBean condition = new ElemBean(queryParam);
+		return ${modelNameLowerCamel}Impl.getInfoById(condition);
+	}
+
+	/**
 	*  新增
 	* @param queryParam
 	*/
@@ -84,7 +95,7 @@ public class ${modelNameUpperCamel}Mng extends BaseController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public void add(@RequestBody Map queryParam) {
 	    ElemBean condition = new ElemBean(queryParam);
-	    ${modelNameLowerCamel}Impl.modify(condition);
+	    ${modelNameLowerCamel}Impl.add(condition);
 	}
 
     /**

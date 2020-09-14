@@ -22,6 +22,15 @@ public class ${modelNameUpperCamel}Impl{
 		return ${modelNameLowerCamel}Dao.getPageInfo(condition);
 	}
 
+	/**
+	*    获取明细
+	* @param condition
+	* @return
+	*/
+	public Map getInfoById(ElemBean condition) {
+
+		return ${modelNameLowerCamel}Dao.getInfoById(condition);
+	}
 
 	/**
 	*  新增
