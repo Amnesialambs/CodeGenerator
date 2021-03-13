@@ -21,8 +21,7 @@ public class POGenerator extends CodeGeneratorManager implements CodeGenerator {
 		
 		Map<String, Object> data = getDataMapInit(tableName, modelName, sign, modelNameUpperCamel); 
 		try {
-			File controllerFile = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_BASE + PACKAGE_PATH_PO+ customMapping
-						 + modelNameUpperCamel + "PO.java");
+			File controllerFile = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_BASE + PACKAGE_PATH_PO + modelNameUpperCamel + "PO.java");
 	        if (!controllerFile.getParentFile().exists()) {
 	        	controllerFile.getParentFile().mkdirs();
 	        }

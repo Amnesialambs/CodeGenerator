@@ -218,6 +218,7 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		new ControllerGenerator().genCode(tableName, modelName, sign);
 		new DaoGenerator().genCode(tableName, modelName, sign);
 		new POGenerator().genCode(tableName, modelName, sign);
+		new DtoGenerator().genCode(tableName,modelName,sign);
 	}
 	
 	/**
@@ -284,6 +285,7 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		CONTROLLER_PACKAGE = prop.getProperty("controller.package");
 		DAO_PACKAGE = prop.getProperty("dao.package");
 		PO_PACKAGE = prop.getProperty("po.package");
+		DTO_PACKAGE = prop.getProperty("dto.package");
 		
 		MAPPER_INTERFACE_REFERENCE = prop.getProperty("mapper.interface.reference");
 		SERVICE_INTERFACE_REFERENCE = prop.getProperty("service.interface.reference");
@@ -294,6 +296,7 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		String controllerPackage = prop.getProperty("package.path.controller");
 		String daoPackage = prop.getProperty("package.path.dao");
 		String poPackage = prop.getProperty("package.path.po");
+		String dtoPackage = prop.getProperty("package.path.dto");
 		
 		PACKAGE_PATH_BASE = packageConvertPath(BASE_PACKAGE);
 		PACKAGE_PATH_SERVICE = "".equals(servicePackage) ? packageConvertPath(SERVICE_PACKAGE) : servicePackage;
@@ -301,6 +304,8 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		PACKAGE_PATH_CONTROLLER = "".equals(controllerPackage) ? packageConvertPath(CONTROLLER_PACKAGE) : controllerPackage;
 		PACKAGE_PATH_DAO = "".equals(daoPackage) ? packageConvertPath(DAO_PACKAGE) : daoPackage;
 		PACKAGE_PATH_PO = "".equals(poPackage) ? packageConvertPath(PO_PACKAGE) : poPackage;
+		PACKAGE_PATH_DTO = "".equals(dtoPackage) ? packageConvertPath(DTO_PACKAGE) : dtoPackage;
+
 
 
 		AUTHOR = prop.getProperty("author");

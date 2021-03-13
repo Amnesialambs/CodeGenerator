@@ -35,9 +35,9 @@ public class ServiceGenerator extends CodeGeneratorManager implements CodeGenera
 			logger.info(modelNameUpperCamel + "Service.java 生成成功!");*/
 			
 			// 创建 Service 接口的实现类
-			File serviceImplFile = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_BASE + PACKAGE_PATH_SERVICE_IMPL + customMapping
-					+ modelNameUpperCamel + "Impl.java");
+			File serviceImplFile = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_BASE + PACKAGE_PATH_SERVICE_IMPL + modelNameUpperCamel + "Impl.java");
 			// 查看父级目录是否存在, 不存在则创建
+
 			if (!serviceImplFile.getParentFile().exists()) {
 				serviceImplFile.getParentFile().mkdirs();
 			}
