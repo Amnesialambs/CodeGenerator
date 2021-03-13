@@ -157,7 +157,12 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 	 * @return 区分字段 eg: test
 	 */
 	protected String getSign(String tableName) {
-		return getTableNameSplit(tableName)[2];
+		String[] strs = getTableNameSplit(tableName);
+		if(strs.length > 2){
+			return strs[2];
+		}else {
+			return strs[1];
+		}
 	}
 	
 	/**
@@ -181,7 +186,7 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 	 */
 	private String[] getTableNameSplit(String tableName) {
 		String[] strs = tableName.split("_");
-		if (!tableName.contains("_") || strs.length < 3) {
+		if (!tableName.contains("_") || strs.length < 2) {
 			throw new RuntimeException("表名格式不正确, 请按规定格式! 例如: gen_test_demo");
 		}
 		return strs;

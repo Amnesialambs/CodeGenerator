@@ -3,12 +3,14 @@ package com.codegen.service.impl;
 
 import com.codegen.service.CodeGenerator;
 import com.codegen.service.CodeGeneratorManager;
+import com.codegen.util.DBUtil;
 import com.codegen.util.StringUtils;
 import freemarker.template.Configuration;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DtoGenerator extends CodeGeneratorManager implements CodeGenerator {
@@ -18,8 +20,10 @@ public class DtoGenerator extends CodeGeneratorManager implements CodeGenerator 
         Configuration cfg = getFreemarkerConfiguration();
         String customMapping = "/" + sign + "/";
         String modelNameUpperCamel = StringUtils.isNullOrEmpty(modelName) ? tableNameConvertUpperCamel(tableName) : modelName;
-
+        String sql = " select * from "+tableName;
         Map<String, Object> data = getDataMapInit(modelName, sign, modelNameUpperCamel);
+        String[] columns = DBUtil.getColumnsBySql(sql,null);
+        logger.info(columns.toString());
         try {
 
             // 创建 Service 接口的实现类

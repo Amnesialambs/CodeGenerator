@@ -27,7 +27,7 @@ public class DBUtil  extends CodeGeneratorManager {
 
     private static void loadDriver(){
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -74,6 +74,18 @@ public class DBUtil  extends CodeGeneratorManager {
             sqlException.printStackTrace();
         }
         return resultList;
+    }
+
+    public static String[] getColumnsBySql(String sql, List<Object> queryParam){
+        String[] columns = null;
+        try {
+            ResultSet resultSet = preparedStatement.executeQuery(sql);
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            columns = getColumns(metaData);
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return columns;
     }
 
     private static String[] getColumns(ResultSetMetaData metaData){

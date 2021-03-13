@@ -1,4 +1,4 @@
-package ${basePackage}.po.${sign};
+package ${basePackage}.po;
 
 import org.javalite.activejdbc.annotations.IdName;
 import org.javalite.activejdbc.annotations.Table;

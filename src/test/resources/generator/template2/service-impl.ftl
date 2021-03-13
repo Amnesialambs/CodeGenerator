@@ -1,10 +1,4 @@
-package ${basePackage}.service.impl.${sign};
-
-import com.yonyou.dcs.common.bean.ElemBean;
-import com.yonyou.dmsgms.framework.DAO.PageInfoDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+package ${basePackage}.service.impl;
 
 @Service
 public class ${modelNameUpperCamel}Impl{

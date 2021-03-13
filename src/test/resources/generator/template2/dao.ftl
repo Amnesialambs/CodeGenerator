@@ -1,11 +1,4 @@
-package ${basePackage}.dao.${sign};
-
-import com.yonyou.dcs.common.bean.ElemBean;
-import com.yonyou.dcs.common.util.DcsDaoUtil;
-import com.yonyou.dmsgms.framework.DAO.PageInfoDto;
-import org.springframework.stereotype.Repository;
-import java.util.ArrayList;
-import java.util.List;
+package ${basePackage}.dao;
 
 
 @Repository

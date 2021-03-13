@@ -1,4 +1,4 @@
-package ${basePackage}.service.impl.${sign};
+package ${basePackage}.service.impl;
 
 
 /**
