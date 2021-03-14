@@ -280,7 +280,7 @@ public class CodeGeneratorManager extends CodeGeneratorConfig {
 		RESOURCES_PATH = prop.getProperty("resources.path");
 		PROJECT_PATH = prop.getProperty("template.project.path");
 		TEMPLATE_FILE_PATH = PROJECT_PATH + prop.getProperty("template.file.path");
-
+		OUTFILE_PROJECT_PATH  = prop.getProperty("outFile.project.path");
 
 		BASE_PACKAGE = prop.getProperty("base.package");
 		MODEL_PACKAGE = prop.getProperty("model.package");

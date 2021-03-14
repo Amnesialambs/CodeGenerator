@@ -67,5 +67,7 @@ public class CodeGeneratorConfig {
 	protected static String AUTHOR;
 	// 模板注释中 @date
 	protected static String DATE;
+	// 生成文件目标项目路径
+	protected static String OUTFILE_PROJECT_PATH;
 	
 }

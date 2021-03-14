@@ -28,7 +28,7 @@ public class DtoGenerator extends CodeGeneratorManager implements CodeGenerator 
         try {
 
             // 创建 Service 接口的实现类
-            File dtoFile = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_BASE + PACKAGE_PATH_DTO + modelNameUpperCamel + "Dto.java");
+            File dtoFile = new File(OUTFILE_PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_BASE + PACKAGE_PATH_DTO + modelNameUpperCamel + "Dto.java");
             // 查看父级目录是否存在, 不存在则创建
 
             if (!dtoFile.getParentFile().exists()) {
