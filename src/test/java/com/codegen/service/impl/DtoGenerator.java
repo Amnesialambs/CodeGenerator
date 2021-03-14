@@ -21,9 +21,10 @@ public class DtoGenerator extends CodeGeneratorManager implements CodeGenerator 
         String customMapping = "/" + sign + "/";
         String modelNameUpperCamel = StringUtils.isNullOrEmpty(modelName) ? tableNameConvertUpperCamel(tableName) : modelName;
         String sql = " select * from "+tableName;
-        Map<String, Object> data = getDataMapInit(modelName, sign, modelNameUpperCamel);
         String[] columns = DBUtil.getColumnsBySql(sql,null);
-        logger.info(columns.toString());
+        Map<String,String> columnType = DBUtil.getColumnTypeSql(sql,null);
+       // Map<String, Object> data = getDataMapInit(modelName, sign, modelNameUpperCamel);
+        Map<String, Object> data = getDataMapInit(modelName, sign, modelNameUpperCamel,columnType);
         try {
 
             // 创建 Service 接口的实现类
@@ -49,7 +50,7 @@ public class DtoGenerator extends CodeGeneratorManager implements CodeGenerator 
      * @param modelNameUpperCamel 首字为大写的实体类名
      * @return
      */
-    private Map<String, Object> getDataMapInit(String modelName, String sign, String modelNameUpperCamel) {
+    private Map<String, Object> getDataMapInit(String modelName, String sign, String modelNameUpperCamel,Map<String, String> columnType) {
         Map<String, Object> data = new HashMap<>();
         data.put("date", DATE);
         data.put("author", AUTHOR);
@@ -57,7 +58,19 @@ public class DtoGenerator extends CodeGeneratorManager implements CodeGenerator 
         data.put("modelNameUpperCamel", modelNameUpperCamel);
         data.put("modelNameLowerCamel", StringUtils.toLowerCaseFirstOne(modelNameUpperCamel));
         data.put("basePackage", BASE_PACKAGE);
+        data.put("columns", paresMap(columnType));
 
         return data;
+    }
+
+    private static String paresMap(Map<String, String> columnType){
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Map.Entry<String,String> entry : columnType.entrySet()){
+            String name = entry.getKey();
+            String type = entry.getValue();
+            stringBuilder.append("\tprivate ").append(StringUtils.changeType(type)).append(" ").append(StringUtils.underScoreCase2CamelCase(name)).append(" ;\n");
+        }
+        return stringBuilder.toString();
     }
 }

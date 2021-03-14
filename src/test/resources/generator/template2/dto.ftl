@@ -1,5 +1,6 @@
-package ${basePackage}.service.impl;
+package ${basePackage}.dto;
 
+import java.math.BigDecimal;
 
 /**
  *
@@ -7,5 +8,6 @@ package ${basePackage}.service.impl;
  */
 public class ${modelNameUpperCamel}Dto {
 
+${columns}
 
 }

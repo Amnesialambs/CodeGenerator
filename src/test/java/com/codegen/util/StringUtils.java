@@ -96,7 +96,7 @@ public class StringUtils {
 	 * @param typeName
 	 * @return
 	 */
-	private static String changeType(String typeName) {
+	public static String changeType(String typeName) {
 		switch (typeName) {
 			case "VARCHAR":
 			case "CHAR":
@@ -140,4 +140,15 @@ public class StringUtils {
 		return "String";
 	}
 
+	public static String parseArrayToString(Object[] array){
+
+		StringBuffer stringBuffer = new StringBuffer();
+		for (Object obj : array){
+			if (null == obj){
+				continue;
+			}
+			stringBuffer.append(obj).append(",");
+		}
+		return stringBuffer.toString();
+	}
 }

@@ -30,7 +30,7 @@ public class CodeGeneratorMain {
 	 */
 	public static void main(String[] args) {
 		CodeGeneratorManager cgm = new CodeGeneratorManager();
-		
+		//
 //	 	cgm.genCodeWithSimpleName(TABLE);
 		
 //		cgm.genCodeWithDetailName(TABLES);
