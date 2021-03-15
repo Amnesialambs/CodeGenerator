@@ -50,9 +50,10 @@ public class StringUtils {
 	 * @return 驼峰命名格式
 	 */
 	public static String underScoreCase2CamelCase(String str) {
-		if (!str.contains("_")) {
+		if (!str.contains("_") || str.isEmpty() || null == str) {
 			return str;
 		}
+		str = str.toLowerCase();
 		StringBuilder sb = new StringBuilder();
 		char[] chars = str.toCharArray();
 		boolean flag = false;

@@ -78,19 +78,6 @@ public class DBUtil  extends CodeGeneratorManager {
         return resultList;
     }
 
-    public static String[] getColumnsBySql(String sql, List<Object> queryParam){
-        String[] columns = null;
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            ResultSetMetaData metaData = resultSet.getMetaData();
-            columns = getColumns(metaData);
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-        }
-        return columns;
-    }
-
     private static String[] getColumns(ResultSetMetaData metaData){
         String[] columns = null;
         try {
@@ -108,33 +95,40 @@ public class DBUtil  extends CodeGeneratorManager {
         return columns;
     }
 
-    public static Map<String,String> getColumnTypeSql(String sql, List<Object> queryParam){
-        Map<String,String> columnMap = null;
+    public static List<Map<String, String>> getColumnTypeSql(String sql, List<Object> queryParam){
+
+        List<Map<String, String>> list = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            queryParam.add(conn.getCatalog());
+            // 填充sql语句中的占位符
+            int index = 1;
+            if(queryParam != null && !queryParam.isEmpty()) {
+                for(int i = 0; i < queryParam.size(); i++) {
+                    preparedStatement.setObject(index++, queryParam.get(i));
+                }
+            }
             ResultSet resultSet = preparedStatement.executeQuery();
             ResultSetMetaData metaData = resultSet.getMetaData();
-            columnMap = getColumnType(metaData);
+            int cols_len = metaData.getColumnCount();
+            while (resultSet.next()){
+                Map<String, String> map = new HashMap<>();
+                for(int i = 0; i < cols_len; i++) {
+                    String cols_name = metaData.getColumnName(i + 1);
+                    String cols_value = resultSet.getString(cols_name);
+                    if (cols_value == null) {
+                        cols_value = "";
+                    }
+                    map.put(cols_name, cols_value);
+                }
+                list.add(map);
+            }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
-        return columnMap;
+        return list;
     }
 
-    private static Map<String,String> getColumnType(ResultSetMetaData metaData){
-        Map<String,String> columnMap = new HashMap<>();
-        try {
-            int num = metaData.getColumnCount();
-            for (int i = 1; i < num; i++){
-                String column = metaData.getColumnName(i);
-                String columnType = metaData.getColumnTypeName(i);
-                columnMap.put(column,columnType);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return columnMap;
-    }
 
     public static void main(String[] args) {
     }
